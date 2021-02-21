@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char *solution(int n) {
+  char *roman = (char*)malloc(100*sizeof(char));
+  int i;
+  int n2 = n;
+  for(i = 0;i<n2/1000;i++)
+      strcat(roman,"M");
+  n2 = n2%1000;
+  if(n2>=500)
+    {
+      if(n2/100 == 9)
+        {
+          strcat(roman,"CM");
+          n2 = n2 - 900;
+        }
+      else
+        {
+          strcat(roman,"D");
+          for(i=0;i<(n2/100 - 5);i++)
+            strcat(roman,"C");
+          n2 = n2%100;
+        }
+    }
+  else
+    {
+       if(n2/100 == 4)
+        {
+          strcat(roman,"CD");
+          n2 = n2 - 400;
+        }
+      else
+        {
+          for(i=0;i<n2/100;i++)
+            strcat(roman,"C");
+          n2 = n2%100;
+        }   
+    }
+  if(n2>=50)
+    {
+      if(n2/10 == 9)
+        {
+          strcat(roman,"XC");
+          n2 = n2 - 90;
+        }
+      else
+        {
+          strcat(roman,"L");
+          for(i=0;i<(n2/10 - 5);i++)
+            strcat(roman,"X");
+          n2 = n2%10;
+        }
+    }
+  else
+    {
+       if(n2/10 == 4)
+        {
+          strcat(roman,"XL");
+          n2 = n2 - 40;
+        }
+      else
+        {
+          for(i=0;i<n2/10;i++)
+            strcat(roman,"X");
+          n2 = n2%10;
+        }   
+    }
+  if(n2>=5)
+    {
+      if(n2 == 9)
+          strcat(roman,"IX");
+      else
+        {
+          strcat(roman,"V");
+          for(i=0;i<(n2 - 5);i++)
+            strcat(roman,"I");
+        }
+    }
+  else
+    {
+       if(n2 == 4)
+          strcat(roman,"IV");
+      else
+          for(i=0;i<n2;i++)
+            strcat(roman,"I");
+    }
+  return roman;
+}
