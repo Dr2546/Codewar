@@ -1,0 +1,39 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+char *encode(const char *string) {
+  int len = strlen(string);
+  char *b = (char*)malloc(len*sizeof(char));
+  strcpy(b,string);
+  char *a = (char*)malloc(len*sizeof(char));
+  for(int i = 0;i<len;i++)
+      switch(b[i])
+        {
+           case 'a': a[i] = '1'; break;
+           case 'e': a[i] = '2'; break;
+           case 'i': a[i] = '3'; break;
+           case 'o': a[i] = '4'; break;
+           case 'u': a[i] = '5'; break;
+           default : a[i] = b[i]; break;
+        }
+  return a;
+}
+
+char *decode(const char *string) {
+  int len = strlen(string);
+  char *b = (char*)malloc(len*sizeof(char));
+  strcpy(b,string);
+  char *a = (char*)malloc(len*sizeof(char));
+  for(int i = 0;i<len;i++)
+      switch(b[i])
+        {
+           case '1': a[i] = 'a'; break;
+           case '2': a[i] = 'e'; break;
+           case '3': a[i] = 'i'; break;
+           case '4': a[i] = 'o'; break;
+           case '5': a[i] = 'u'; break;
+           default : a[i] = b[i]; break;
+        }
+  return a;
+}
